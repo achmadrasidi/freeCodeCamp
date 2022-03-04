@@ -1,0 +1,12 @@
+function smallestCommons(arr) {
+  const [min,max] = arr.sort((a,b)=>a-b)
+  const range = Array(max-min+1).fill(0).map((_,i)=>i+min)
+  const upperBound = range.reduce((a,b)=>a*b)
+
+  for(let i = max;i<upperBound;i+=max){
+    if(range.every((val)=>i%val === 0))
+  return i;
+  }
+}
+
+smallestCommons([1,5]);

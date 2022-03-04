@@ -1,0 +1,16 @@
+function sumFibs(num) {
+  let firstNum = 0
+  let lastNum = 1
+  let total = 0
+
+  
+  while(lastNum <=num){
+    if(lastNum % 2 !== 0){
+    total += lastNum}
+    lastNum += firstNum
+    firstNum = lastNum - firstNum
+  }
+  return total;
+}
+
+sumFibs(4);

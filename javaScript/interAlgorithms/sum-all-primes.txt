@@ -1,0 +1,9 @@
+function sumPrimes(num) {
+  let results = []
+  for(let i =2;i<=num;i++){
+    if(results.every((result)=>i%result !== 0)) results.push(i)
+  }
+  return results.reduce((a,b)=>a+b,0);
+}
+
+console.log(sumPrimes(10));

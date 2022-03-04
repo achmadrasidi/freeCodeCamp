@@ -1,0 +1,12 @@
+function sumAll(arr) {
+  let firstNum = Math.min(...arr)
+  let lastNum = Math.max(...arr)
+  let total = 0
+
+  for(let i = firstNum;i<=lastNum;i++){
+    total += i
+  }
+  return total;
+}
+
+sumAll([1, 4]);
