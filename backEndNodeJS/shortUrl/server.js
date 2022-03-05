@@ -1,7 +1,8 @@
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const shortid = require("shortid");
-const validUrl = require("valid-url");
+const dns = require("dns");
+const urlParser = require("url");
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -39,11 +40,16 @@ app.get("/", function (req, res) {
 // Your first API endpoint
 app.post("/api/shorturl", async (req, res) => {
   const url = await Url.create({ original_url: req.body.url });
-  if (!validUrl.isUri(url.original_url)) {
-    res.json({ error: "invalid url" });
-  } else {
-    res.json({ original_url: url.original_url, short_url: url.short_url });
-  }
+  const oriUrl = url.original_url;
+  const shortUrl = url.short_url;
+  const parseUrl = urlParser.parse(oriUrl).hostname;
+  dns.lookup(parseUrl, (err, address, family) => {
+    if (!address) {
+      res.json({ error: "invalid url" });
+    } else {
+      res.json({ original_url: oriUrl, short_url: shortUrl });
+    }
+  });
 });
 
 app.get("/api/shorturl/:shorturl", async (req, res) => {
