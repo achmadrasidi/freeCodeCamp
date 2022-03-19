@@ -156,14 +156,13 @@ class SudokuSolver {
   checkRowPlacement(puzzleString, row, column, value) {
     let grid = gridConverter(puzzleString);
     row = numberConverter(row);
-    let rowIndex = row - 1;
-    let colIndex = column - 1;
+    const rowIndex = row - 1;
+    const colIndex = column - 1;
+    const place = grid[rowIndex][colIndex];
 
-    if (grid[rowIndex][colIndex] == value) {
-      return true;
-    } else if (grid[rowIndex][colIndex] !== 0) {
-      return false;
-    }
+    if (place == value) return true;
+
+    if (place !== 0) return false;
 
     for (let i = 0; i < 9; i++) {
       if (grid[rowIndex][i] == value) {
@@ -176,14 +175,13 @@ class SudokuSolver {
   checkColPlacement(puzzleString, row, column, value) {
     let grid = gridConverter(puzzleString);
     row = numberConverter(row);
-    let rowIndex = row - 1;
-    let colIndex = column - 1;
+    const rowIndex = row - 1;
+    const colIndex = column - 1;
+    const place = grid[rowIndex][colIndex];
 
-    if (grid[rowIndex][colIndex] == value) {
-      return true;
-    } else if (grid[rowIndex][colIndex] !== 0) {
-      return false;
-    }
+    if (place == value) return true;
+
+    if (place !== 0) return false;
 
     for (let i = 0; i < 9; i++) {
       if (grid[i][colIndex] == value) {
@@ -196,14 +194,13 @@ class SudokuSolver {
   checkRegionPlacement(puzzleString, row, col, value) {
     let grid = gridConverter(puzzleString);
     row = numberConverter(row);
-    let rowIndex = row - 1;
-    let colIndex = col - 1;
+    const rowIndex = row - 1;
+    const colIndex = col - 1;
+    const place = grid[rowIndex][colIndex];
 
-    if (grid[rowIndex][colIndex] == value) {
-      return true;
-    } else if (grid[rowIndex][colIndex] !== 0) {
-      return false;
-    }
+    if (place == value) return true;
+
+    if (place !== 0) return false;
 
     let startRow = row - (row % 3),
       startCol = col - (col % 3);
